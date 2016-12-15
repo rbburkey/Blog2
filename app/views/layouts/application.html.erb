@@ -3,12 +3,52 @@
 <head>
   <title>Blog2</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', 'http://fonts.googleapis.com/css?family=Raleway400,700'%>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="sidebar">
+    <div id="logo">
+      <%= link_to root_path do%>
+      <%= image_tag "logo.svg" %>
+      <%end%>
+    </div>
+    <ul>
+      <li class="category">Website</li>
+      <li><%= link_to "Blog", root_path %></li>
+      <li>About</li>
+    </ul>
 
-<%= yield %>
+    <ul>
+      <li class="category">Social</li>
+      <li><a href="http://www.instagram.com/robinsonburkey">Instagram</a></li>
+      <li><a href="http://www.github.com/rbburkey">Github</a></li>
+      <li><a href="mailto:robinsonbburkey@gmail.com">E-mail</a></li>
+    </ul>
+
+    <p class="sign_in">Admin Login</p>
+
+  </div>
+
+  <div id="main_content">
+    <div id="header">
+      <p>All Posts</p>
+
+      <div class="buttons">
+        <button class="button"><%= link_to 'New Post', new_post_path%></button>
+        <button class="button">Logout</button>
+      </div>
+
+    </div>
+    <% flash.each do |name, message| %>
+    <%= content_tag(:div, msg, class: "Alert") %>
+    <%end%>
+
+    <%= yield %>
+  </div>
+
+
 
 </body>
 </html>
